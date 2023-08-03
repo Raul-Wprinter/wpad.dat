@@ -1,0 +1,19 @@
+function FindProxyForURL(url, host) {
+    var directDomains = [
+        "localhost",
+        "127.0.0.1",
+        "192.168.1.150"
+    ];
+
+    var proxyServer = "192.168.1.190";
+    var proxyPort = "3128";
+
+    for (var i = 0; i < directDomains.length; i++) {
+        if (dnsDomainIs(host, directDomains[i])) {
+            return "DIRECT";
+        }
+    }
+
+    // Usa o proxy para todos os outros casos
+    return "PROXY " + proxyServer + ":" + proxyPort;
+}
